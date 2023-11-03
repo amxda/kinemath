@@ -1,8 +1,8 @@
 .PHONY: all build clean
 
 all: build
-	./projectile
+	./main
 build:
-	gcc projectile.c -o projectile -Wall -Wextra -O2 -g
+	gcc main.c -o main -Wall -Wextra -O2 -g
 clean:
-	rm projectile
+	rm main 
