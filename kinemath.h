@@ -77,18 +77,10 @@ km_equ1(double d, double v0, double v, double t, enum km_kine_arg solve_arg)
 {
 	switch (solve_arg)
 	{
-		case KINE_D: {
-
-		}
-		case KINE_V0: {
-
-		}
-		case KINE_V: {
-		
-		}
-		case KINE_T: {
-
-		}
+		case KINE_D: return ((v + v0) / 2) * t;
+		case KINE_V0: return (2 * d * t) - v;
+		case KINE_V: return (2 * d * t) - v0;
+		case KINE_T: return d / ((v + v0) / 2);
 		default: {
 			perror("km_equ1(): invalid solve_arg");
 			exit(EXIT_FAILURE);
