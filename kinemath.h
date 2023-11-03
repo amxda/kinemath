@@ -55,26 +55,17 @@ enum km_kine_arg {
 inline double
 km_equ0(double v0, double v, double a, double t, enum km_kine_arg solve_arg)
 {
-	switch (solve_arg)
-	{
-		case KINE_V0: {
+	switch (solve_arg) {
+		case KINE_V0: return v - (a * t);
+		case KINE_V: return v0 + (a * t);
+		case KINE_A: return (v - v0) / t;
+		case KINE_T: return (v - v0) / a;
 
-		}
-		case KINE_V: {
-		
-		}
-		case KINE_A: {
-
-		}
-		case KINE_T: {
-
-		}
 		default: {
 			perror("km_equ0(): invalid solve_arg");
 			exit(EXIT_FAILURE);
 		}
 	}
-
 	__builtin_unreachable();
 }
 
