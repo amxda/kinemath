@@ -12,7 +12,7 @@
  * Velocity (Final):	KINE_V
  * Acceleration:		KINE_A
  */
-enum pm_kine_arg {
+enum km_kine_arg {
 	KINE_D,
 	KINE_T,
 	KINE_V0,
@@ -21,16 +21,27 @@ enum pm_kine_arg {
 };
 
 /*
- * pm_kine0: v = v0 + at
+ * km_equ0: v = v0 + at
  */
 inline double
-pm_kine0(double v0, double v, double a, double t, enum pm_kine_arg solve_arg)
+km_equ0(double v0, double v, double a, double t, enum km_kine_arg solve_arg)
 {
 	switch (solve_arg)
 	{
-		// pm_kine0 code here
+		case KINE_V0: {
+
+		}
+		case KINE_V: {
+		
+		}
+		case KINE_A: {
+
+		}
+		case KINE_T: {
+
+		}
 		default: {
-			perror("pm_kine0(): invalid solve_arg");
+			perror("km_equ0(): invalid solve_arg");
 			exit(EXIT_FAILURE);
 		}
 	}
@@ -39,16 +50,27 @@ pm_kine0(double v0, double v, double a, double t, enum pm_kine_arg solve_arg)
 }
 
 /*
- * pm_kine1: dx = ((v + v0) / 2)(t)
+ * km_equ1: dx = ((v + v0) / 2)(t)
  */
 inline double
-pm_kine1(double d, double v0, double v, double t, enum pm_kine_arg solve_arg)
+km_equ1(double d, double v0, double v, double t, enum km_kine_arg solve_arg)
 {
 	switch (solve_arg)
 	{
-		// pm_kine1 code here
+		case KINE_D: {
+
+		}
+		case KINE_V0: {
+
+		}
+		case KINE_V: {
+		
+		}
+		case KINE_T: {
+
+		}
 		default: {
-			perror("pm_kine1(): invalid solve_arg");
+			perror("km_equ1(): invalid solve_arg");
 			exit(EXIT_FAILURE);
 		}
 	}
@@ -57,16 +79,27 @@ pm_kine1(double d, double v0, double v, double t, enum pm_kine_arg solve_arg)
 }
 
 /*
- * pm_kine2: dx = v0t + (1/2)(a)(t^2)
+ * km_equ2: dx = v0t + (1/2)(a)(t^2)
  */
 inline double
-pm_kine2(double d, double v0, double a, double t, enum pm_kine_arg solve_arg)
+km_equ2(double d, double v0, double a, double t, enum km_kine_arg solve_arg)
 {
 	switch (solve_arg)
 	{
-		// pm_kine2 code here
+		case KINE_D: {
+
+		}
+		case KINE_V0: {
+
+		}
+		case KINE_A: {
+		
+		}
+		case KINE_T: {
+
+		}
 		default: {
-			perror("pm_kine2(): invalid solve_arg");
+			perror("km_equ2(): invalid solve_arg");
 			exit(EXIT_FAILURE);
 		}
 	}
@@ -75,16 +108,27 @@ pm_kine2(double d, double v0, double a, double t, enum pm_kine_arg solve_arg)
 }
 
 /*
- * pm_kine3: v^2 = v0^2 + 2a(dx)
+ * km_equ3: v^2 = v0^2 + 2a(dx)
  */
 inline double
-pm_kine3(double d, double v0, double v, double a, enum pm_kine_arg solve_arg)
+km_equ3(double d, double v0, double v, double a, enum km_kine_arg solve_arg)
 {
 	switch (solve_arg)
 	{
-		// pm_kine3 code here
+		case KINE_D: {
+
+		}
+		case KINE_V0: {
+
+		}
+		case KINE_V: {
+		
+		}
+		case KINE_A: {
+
+		}
 		default: {
-			perror("pm_kine3(): invalid solve_arg");
+			perror("km_equ3(): invalid solve_arg");
 			exit(EXIT_FAILURE);
 		}
 	}
