@@ -96,20 +96,13 @@ km_equ1(double d, double v0, double v, double t, enum km_kine_arg solve_arg)
 inline double
 km_equ2(double d, double v0, double a, double t, enum km_kine_arg solve_arg)
 {
-	switch (solve_arg)
-	{
-		case KINE_D: {
-
-		}
-		case KINE_V0: {
-
-		}
-		case KINE_A: {
-		
-		}
+	switch (solve_arg) {
+		case KINE_D: return (v0 * t) + (0.5 * a * (t * t));
+		case KINE_V0: return (d - (0.5 * a * (t * t))) / t;
+		case KINE_A: return (2 * (d - (v0 * t))) / (t * t);
 		case KINE_T: {
-
-		}
+			// TODO: Implement quadratic equation
+		};
 		default: {
 			perror("km_equ2(): invalid solve_arg");
 			exit(EXIT_FAILURE);
