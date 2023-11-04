@@ -32,6 +32,7 @@ provided that the following conditions are met:
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <math.h>
 
 
 /*
@@ -75,8 +76,7 @@ km_equ0(double v0, double v, double a, double t, enum km_kine_arg solve_arg)
 inline double
 km_equ1(double d, double v0, double v, double t, enum km_kine_arg solve_arg)
 {
-	switch (solve_arg)
-	{
+	switch (solve_arg) {
 		case KINE_D: return ((v + v0) / 2) * t;
 		case KINE_V0: return (2 * d * t) - v;
 		case KINE_V: return (2 * d * t) - v0;
@@ -125,20 +125,11 @@ km_equ2(double d, double v0, double a, double t, enum km_kine_arg solve_arg)
 inline double
 km_equ3(double d, double v0, double v, double a, enum km_kine_arg solve_arg)
 {
-	switch (solve_arg)
-	{
-		case KINE_D: {
-
-		}
-		case KINE_V0: {
-
-		}
-		case KINE_V: {
-		
-		}
-		case KINE_A: {
-
-		}
+	switch (solve_arg) {
+		case KINE_D: return ((v * v) - (v0 * v0)) / (2 * a);
+		case KINE_V0: return sqrt((v * v) + (2 * a * d));
+		case KINE_V: return sqrt((v0 * v0) + (2 * a * d));
+		case KINE_A: return ((v * v) - (v0 * v0)) / (2 * d);
 		default: {
 			perror("km_equ3(): invalid solve_arg");
 			exit(EXIT_FAILURE);
