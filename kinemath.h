@@ -86,12 +86,13 @@ km_equ1(double d, double v0, double v, double t, enum km_kine_arg solve_arg)
 			exit(EXIT_FAILURE);
 		}
 	}
-
 	__builtin_unreachable();
 }
 
 /*
  * km_equ2: dx = v0t + (1/2)(a)(t^2)
+ *
+ * NOTE: for KINE_T, exits when there are 0 or more than one valid distinct solutions
  */
 inline double
 km_equ2(double d, double v0, double a, double t, enum km_kine_arg solve_arg)
@@ -101,14 +102,35 @@ km_equ2(double d, double v0, double a, double t, enum km_kine_arg solve_arg)
 		case KINE_V0: return (d - (0.5 * a * (t * t))) / t;
 		case KINE_A: return (2 * (d - (v0 * t))) / (t * t);
 		case KINE_T: {
-			// TODO: Implement quadratic equation
+			double b2m4ac = (v0 * v0) + (2 * d);
+			if (b2m4ac == 0) {
+				// one real solution
+				return d;
+			} else if (b2m4ac > 0) {
+				// two distinct real solutions
+				double root0 = d + sqrt(b2m4ac);
+				double root1 = d - sqrt(b2m4ac);
+				if (root0 < 0) {
+					return root1;
+				}
+				if (root1 < 0) {
+					return root0;
+				}
+
+				// too many valid distinct solutions
+				perror("km_equ2(): too many valid distinct solutions");
+				exit(EXIT_FAILURE);
+			} else {
+				// no real solutions
+				perror("km_equ2(): no real solutions");
+				exit(EXIT_FAILURE);
+			}
 		};
 		default: {
 			perror("km_equ2(): invalid solve_arg");
 			exit(EXIT_FAILURE);
 		}
 	}
-
 	__builtin_unreachable();
 }
 
@@ -128,7 +150,6 @@ km_equ3(double d, double v0, double v, double a, enum km_kine_arg solve_arg)
 			exit(EXIT_FAILURE);
 		}
 	}
-
 	__builtin_unreachable();
 }
 
